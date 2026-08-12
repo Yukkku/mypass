@@ -1,4 +1,4 @@
 [workspace]
 resolver = "3"
 
-members = ["mypass", "mypass-cli"]
+members = ["mypass", "mypass-cli", "mypass-wasm"]

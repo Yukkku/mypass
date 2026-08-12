@@ -1,0 +1,14 @@
+[package]
+name = "mypass-wasm"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+serde = { version = "1.0.228", features = [ "derive" ] }
+tsify-next = "0.5.6"
+wasm-bindgen = "0.2.127"
+
+mypass = { path = "../mypass" }
