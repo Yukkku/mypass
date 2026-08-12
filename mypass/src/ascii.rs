@@ -191,6 +191,12 @@ impl TryFrom<Box<str>> for CharGroup {
         value.into_boxed_bytes().try_into()
     }
 }
+impl TryFrom<String> for CharGroup {
+    type Error = CharGroupTryFromError;
+    fn try_from(value: String) -> Result<Self, Self::Error> {
+        value.into_boxed_str().try_into()
+    }
+}
 impl TryFrom<Box<[AsciiPrintable]>> for CharGroup {
     type Error = CharGroupTryFromError;
     fn try_from(mut value: Box<[AsciiPrintable]>) -> Result<Self, Self::Error> {
