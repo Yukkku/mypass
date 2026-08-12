@@ -35,18 +35,21 @@ impl PassSource {
         r
     }
 
+    #[must_use]
     fn choose(&mut self, group: &CharGroup) -> AsciiPrintable {
         let i = self.next_max(group.len().get() - 1);
         unsafe { *group.get_unchecked(i) }
     }
 }
 
+#[must_use]
 fn default_allow_chars() -> CharGroup {
     Box::<str>::from(
         r##"!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~"##,
     ).try_into().unwrap()
 }
 
+#[must_use]
 fn default_requires() -> Box<[CharGroup]> {
     [].into()
 }
@@ -62,6 +65,7 @@ pub struct Config {
     pub info: String,
 }
 
+#[must_use]
 pub fn generate(conf: &Config, service: &str, masterpass: &[u8]) -> Box<str> {
     let mut source = PassSource::new(service, masterpass, &conf.info);
     let mut pass = conf
