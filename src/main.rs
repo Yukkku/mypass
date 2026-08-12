@@ -22,8 +22,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let config = std::fs::read_to_string(config)?;
     let ConfigFile { services } = toml::from_str::<ConfigFile>(&config)?;
 
-    let masterpass = xdg_dirs.place_config_file("masterpass.txt")?;
-    let masterpass = std::fs::read_to_string(masterpass)?;
+    let masterpass = xdg_dirs.place_config_file("masterpass")?;
+    let masterpass = std::fs::read(masterpass)?;
 
     let config = services.get(service).expect("unknown service");
 

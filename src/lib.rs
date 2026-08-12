@@ -7,13 +7,13 @@ use ascii::{AsciiPrintable, CharGroup};
 struct PassSource(sha3::Shake256Reader);
 impl PassSource {
     #[must_use]
-    fn new(service: &str, masterpass: &str, info: &str) -> Self {
+    fn new(service: &str, masterpass: &[u8], info: &str) -> Self {
         use sha3::{
             Shake256,
             digest::{ExtendableOutput, Update},
         };
         let mut hasher = Shake256::default();
-        hasher.update(masterpass.as_bytes());
+        hasher.update(masterpass);
         hasher.update(b"\n");
         hasher.update(info.as_bytes());
         hasher.update(b"\n");
@@ -62,7 +62,7 @@ pub struct Config {
     pub info: String,
 }
 
-pub fn generate(conf: &Config, service: &str, masterpass: &str) -> Box<str> {
+pub fn generate(conf: &Config, service: &str, masterpass: &[u8]) -> Box<str> {
     let mut source = PassSource::new(service, masterpass, &conf.info);
     let mut pass = conf
         .requires
