@@ -42,27 +42,27 @@ impl PassSource {
     }
 }
 
-#[must_use]
-fn default_allow_chars() -> CharGroup {
-    Box::<str>::from(
-        r##"!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~"##,
-    ).try_into().unwrap()
-}
-
-#[must_use]
-fn default_requires() -> Box<[CharGroup]> {
-    [].into()
-}
-
 #[derive(Deserialize)]
 pub struct Config {
     pub len: NonZero<u8>,
-    #[serde(default = "default_allow_chars")]
+    #[serde(default = "Config::default_allow_chars")]
     pub allow_chars: CharGroup,
-    #[serde(default = "default_requires")]
+    #[serde(default = "Config::default_requires")]
     pub requires: Box<[CharGroup]>,
     #[serde(default)]
     pub info: String,
+}
+
+impl Config {
+    #[must_use]
+    pub fn default_allow_chars() -> CharGroup {
+        Box::<str>::from(r##"!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~"##).try_into().unwrap()
+    }
+
+    #[must_use]
+    pub fn default_requires() -> Box<[CharGroup]> {
+        [].into()
+    }
 }
 
 #[must_use]
