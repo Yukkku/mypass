@@ -1,6 +1,11 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
+    bun2nix = {
+      url = "github:nix-community/bun2nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
   outputs =
     { nixpkgs, ... }:
@@ -39,6 +44,9 @@
 
               wasm-pack
               llvmPackages.bintools
+
+              bun
+              typescript-language-server
 
               nixd
               nixfmt
