@@ -4,12 +4,6 @@ version = "0.1.0"
 description = "My personal password manager"
 edition = "2024"
 
-[lib]
-crate-type = ["cdylib", "rlib"]
-
 [dependencies]
-clap = { version = "4.6.1", features = [ "cargo" ] }
 serde = { version = "1.0.228", features = [ "derive" ] }
 sha3 = "0.11.0"
-toml = "1.1.2"
-xdg = "3.0.0"
