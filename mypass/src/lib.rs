@@ -2,7 +2,8 @@ use serde::Deserialize;
 use std::num::NonZero;
 
 mod ascii;
-use ascii::{AsciiPrintable, CharGroup};
+use ascii::AsciiPrintable;
+pub use ascii::CharGroup;
 
 struct PassSource(sha3::Shake256Reader);
 impl PassSource {
