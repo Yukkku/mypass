@@ -47,6 +47,7 @@
 
               bun
               typescript-language-server
+              zip
 
               nixd
               nixfmt

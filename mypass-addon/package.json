@@ -8,5 +8,8 @@
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "scripts": {
+    "build": "bun run build.ts & zip mypass.xpi -j dist/*"
   }
 }

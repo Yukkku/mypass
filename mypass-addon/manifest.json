@@ -1,5 +1,25 @@
 {
   "manifest_version": 3,
   "name": "mypass",
-  "version": "3.0"
+  "version": "3.0",
+  "author": "Yukkku",
+
+  "background": {
+    "scripts": ["background.js"]
+  },
+  "content_scripts": [{
+    "matches": ["<all_urls>"],
+    "js": ["content.js"],
+    "run_at": "document_start"
+  }],
+
+  "permissions": [
+    "contextMenus"
+  ],
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "{0f7e3393-e120-4b1f-9d5c-46ffdfde4195}"
+    }
+  }
 }
