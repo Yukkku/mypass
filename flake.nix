@@ -14,6 +14,15 @@
       ];
     in
     {
+      packages = eachSystem (
+        system:
+        let
+          pkgs = import nixpkgs { inherit system; };
+        in
+        {
+          mypass-cli = pkgs.callPackage ./mypass-cli { };
+        }
+      );
       devShells = eachSystem (
         system:
         let
