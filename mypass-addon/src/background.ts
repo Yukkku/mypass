@@ -14,14 +14,18 @@ init(wasm).then(() => {
   });
 
   browser.runtime.onMessage.addListener(async (msg) => {
-    if (msg.type !== "password") return;
-    const password: string = msg.password;
+    if (msg.type !== "phrase") return;
+    const phrase: string = msg.phrase;
     const tabs = await browser.tabs.query({ currentWindow: true, active: true });;
-    console.log(tabs);
     for (const tab of tabs) {
       if (tab.id == null) continue;
       if (tab.url == null) continue;
-      browser.tabs.sendMessage(tab.id, generate({ len: 100 }, new URL(tab.url).hostname, password, new Uint8Array()));
+      browser.tabs.sendMessage(tab.id, generate(
+        { len: 100 },
+        new URL(tab.url).hostname,
+        phrase,
+        new Uint8Array()
+      ));
     }
   });
 });

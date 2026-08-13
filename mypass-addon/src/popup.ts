@@ -7,8 +7,8 @@ input.style.width = "30em";
 input.addEventListener("keydown", e => {
   if (e.key !== "Enter") return;
   browser.runtime.sendMessage({
-    type: "password",
-    password: input.value,
+    type: "phrase",
+    phrase: input.value,
   });
   window.close();
 });
