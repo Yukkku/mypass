@@ -1,6 +1,26 @@
 import init, { generate } from "mypass-wasm";
 import wasm from "mypass-wasm/mypass_wasm_bg.wasm";
 
+interface ConfigFile {
+  services: {
+    [service: string]: {
+      len: number;
+      allow_chars?: string;
+      requires?: string[];
+      info?: string;
+    }
+  }
+}
+
+const getConfig = async () => {
+  const { config } = await browser.storage.local.get(["config"]);
+  if (config != null) {
+    return config as ConfigFile;
+  } else {
+    throw new Error("masterpass is not registered");
+  }
+};
+
 const getMasterpass = async () => {
   const { masterpass } = await browser.storage.local.get(["masterpass"]);
   if (masterpass instanceof Uint8Array) {
@@ -25,16 +45,20 @@ init(wasm).then(() => {
   browser.runtime.onMessage.addListener(async (msg) => {
     if (msg.type !== "phrase") return;
     const phrase: string = msg.phrase;
-    const [tabs, masterpass] = await Promise.all([
+    const [tabs, masterpass, config] = await Promise.all([
       browser.tabs.query({ currentWindow: true, active: true }),
       getMasterpass(),
+      getConfig(),
     ]);
     for (const tab of tabs) {
       if (tab.id == null) continue;
       if (tab.url == null) continue;
+      const service = new URL(tab.url).hostname;
+      const conf = config.services[service];
+      if (!conf) continue;
       browser.tabs.sendMessage(tab.id, generate(
-        { len: 100 },
-        new URL(tab.url).hostname,
+        conf,
+        service,
         phrase,
         masterpass,
       ));
