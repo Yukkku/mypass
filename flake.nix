@@ -1,14 +1,9 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-
-    bun2nix = {
-      url = "github:nix-community/bun2nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
   outputs =
-    { nixpkgs, bun2nix, ... }:
+    { nixpkgs, ... }:
     let
       lib = nixpkgs.lib;
       eachSystem = lib.genAttrs [
@@ -27,7 +22,7 @@
         {
           mypass-cli = pkgs.callPackage ./mypass-cli { };
           mypass-wasm = pkgs.callPackage ./mypass-wasm { };
-          mypass-addon = pkgs.callPackage ./mypass-addon { overlays = [ bun2nix.overlays.default ]; };
+          mypass-addon = pkgs.callPackage ./mypass-addon { };
         }
       );
       devShells = eachSystem (
