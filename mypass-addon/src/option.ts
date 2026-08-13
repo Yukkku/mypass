@@ -13,7 +13,7 @@ const masterpass = (() => {
   });
 
   const label = document.createElement("label");
-  label.textContent = "MasterPass:";
+  label.textContent = "Masterpass:";
   label.appendChild(input);
   return label;
 })();
