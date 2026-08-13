@@ -1,22 +1,15 @@
+import init, { generate } from "mypass-wasm";
+import wasm from "mypass-wasm/mypass_wasm_bg.wasm";
+
+init(wasm);
+
 browser.contextMenus.create({
-  id: 'mypass',
+  id: 'req-mypass',
   title: 'mypass',
   contexts: ['editable'],
 });
 
-import wasm from "mypass-wasm/mypass_wasm_bg.wasm";
-import init, { generate } from "mypass-wasm";
-
-let msg = 0;
-
-browser.contextMenus.onClicked.addListener((_info, tab) => {
-  browser.tabs.sendMessage(tab.id, msg);
-});
-
-init(wasm).then(() => {
-  msg = [0];
-  const pass = generate({ len: 100 }, "scratch", new Uint8Array());
-  msg = [1, pass];
-}).catch(e => {
-  msg = e;
+browser.contextMenus.onClicked.addListener((info, tab) => {
+  if (info.menuItemId !== 'req-mypass') return;
+  browser.tabs.sendMessage(tab.id, generate({ len: 100 }, "scratch", new Uint8Array()));
 });
