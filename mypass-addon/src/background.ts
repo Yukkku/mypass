@@ -24,7 +24,7 @@ init(wasm).then(() => {
         { len: 100 },
         new URL(tab.url).hostname,
         phrase,
-        new Uint8Array()
+        new Uint8Array(),
       ));
     }
   });
