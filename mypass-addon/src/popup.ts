@@ -5,9 +5,16 @@ input.type = "password";
 input.style.width = "30em";
 
 input.addEventListener("keydown", e => {
-  if (e.key !== 'Enter') return;
+  if (e.key !== "Enter") return;
+  browser.runtime.sendMessage({
+    type: "password",
+    password: input.value,
+  });
   window.close();
 });
 
+
 document.body.appendChild(input);
-input.focus();
+document.addEventListener("DOMContentLoaded", () => {
+  input.focus();
+});
