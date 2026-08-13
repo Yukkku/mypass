@@ -21,7 +21,7 @@ init(wasm).then(() => {
     for (const tab of tabs) {
       if (tab.id == null) continue;
       if (tab.url == null) continue;
-      browser.tabs.sendMessage(tab.id, generate({ len: 100 }, new URL(tab.url).hostname, new Uint8Array()));
+      browser.tabs.sendMessage(tab.id, generate({ len: 100 }, new URL(tab.url).hostname, password, new Uint8Array()));
     }
   });
 });

@@ -27,6 +27,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let config = services.get(service).expect("unknown service");
 
-    println!("{}", generate(config, service, &masterpass).as_ref());
+    println!(
+        "{}",
+        generate(config, service, todo!(), &masterpass).as_ref()
+    );
     Ok(())
 }

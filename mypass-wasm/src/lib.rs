@@ -15,7 +15,7 @@ pub struct Config {
 }
 
 #[wasm_bindgen]
-pub fn generate(config: Config, service: &str, masterpass: &[u8]) -> Option<String> {
+pub fn generate(config: Config, service: &str, phrase: &str, masterpass: &[u8]) -> Option<String> {
     let len = config.len.try_into().ok()?;
 
     let allow_chars = if let Some(allow_chars) = config.allow_chars {
@@ -42,5 +42,5 @@ pub fn generate(config: Config, service: &str, masterpass: &[u8]) -> Option<Stri
         requires,
         info,
     };
-    Some(mypass::generate(&config, service, masterpass).into())
+    Some(mypass::generate(&config, service, phrase, masterpass).into())
 }
