@@ -17,10 +17,10 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .expect("missing service name");
 
     let xdg_dirs = xdg::BaseDirectories::with_prefix("mypass");
-    let config = xdg_dirs.place_config_file("config.toml")?;
+    let config = xdg_dirs.place_config_file("config.json")?;
 
     let config = std::fs::read_to_string(config)?;
-    let ConfigFile { services } = toml::from_str::<ConfigFile>(&config)?;
+    let ConfigFile { services } = serde_json::from_str::<ConfigFile>(&config)?;
 
     let masterpass = xdg_dirs.place_config_file("masterpass")?;
     let masterpass = std::fs::read(masterpass)?;
