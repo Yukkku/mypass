@@ -8,7 +8,7 @@
     };
   };
   outputs =
-    { nixpkgs, ... }:
+    { nixpkgs, bun2nix, ... }:
     let
       lib = nixpkgs.lib;
       eachSystem = lib.genAttrs [
@@ -27,6 +27,7 @@
         {
           mypass-cli = pkgs.callPackage ./mypass-cli { };
           mypass-wasm = pkgs.callPackage ./mypass-wasm { };
+          mypass-addon = pkgs.callPackage ./mypass-addon { overlays = [ bun2nix.overlays.default ]; };
         }
       );
       devShells = eachSystem (
