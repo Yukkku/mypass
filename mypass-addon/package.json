@@ -9,7 +9,10 @@
   "peerDependencies": {
     "typescript": "^5"
   },
+  "dependencies": {
+    "mypass-wasm": "file:../mypass-wasm/pkg"
+  },
   "scripts": {
-    "build": "bun run build.ts && zip mypass.xpi -j dist/*"
+    "build": "bun run build.ts && zip mypass.xpi -j -r dist/*"
   }
 }

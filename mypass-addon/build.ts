@@ -7,8 +7,9 @@ await Bun.build({
     "./src/background.js",
     "./src/content.js",
   ],
-  outdir: './dist',
-  minify: true,
+  outdir: "./dist",
+  format: "cjs",
+  // minify: true,
 });
 
 cpSync("./manifest.json", "./dist/manifest.json");
