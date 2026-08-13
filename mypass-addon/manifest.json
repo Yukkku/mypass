@@ -12,6 +12,9 @@
     "js": ["content.js"],
     "run_at": "document_start"
   }],
+  "action": {
+    "default_popup": "popup.html"
+  },
 
   "permissions": [
     "contextMenus"

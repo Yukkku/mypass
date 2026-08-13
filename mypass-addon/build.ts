@@ -6,6 +6,7 @@ await Bun.build({
   entrypoints: [
     "./src/background.ts",
     "./src/content.ts",
+    "./src/popup.html",
   ],
   outdir: "./dist",
   format: "cjs",
