@@ -14,13 +14,13 @@ impl PassSource {
             digest::{ExtendableOutput, Update},
         };
         let mut hasher = Shake256::default();
-        hasher.update(masterpass);
-        hasher.update(b"\n");
-        hasher.update(info.as_bytes());
-        hasher.update(b"\n");
-        hasher.update(service.as_bytes());
-        hasher.update(b"\n");
         hasher.update(phrase.as_bytes());
+        hasher.update(b"\0\n");
+        hasher.update(service.as_bytes());
+        hasher.update(b"\0\n");
+        hasher.update(info.as_bytes());
+        hasher.update(b"\0\n");
+        hasher.update(masterpass);
         Self(hasher.finalize_xof())
     }
 
