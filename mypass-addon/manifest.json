@@ -15,9 +15,14 @@
   "action": {
     "default_popup": "popup.html"
   },
+  "options_ui": {
+    "page": "option.html",
+    "open_in_tab": true
+  },
 
   "permissions": [
-    "contextMenus"
+    "contextMenus",
+    "storage"
   ],
   "web_accessible_resources": [{
     "resources": ["*"],
