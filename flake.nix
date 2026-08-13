@@ -26,6 +26,7 @@
         in
         {
           mypass-cli = pkgs.callPackage ./mypass-cli { };
+          mypass-wasm = pkgs.callPackage ./mypass-wasm { };
         }
       );
       devShells = eachSystem (
@@ -43,6 +44,7 @@
               rustfmt
 
               wasm-pack
+              wasm-bindgen-cli
               llvmPackages.bintools
 
               bun
