@@ -13,7 +13,6 @@ input.addEventListener("keydown", e => {
   window.close();
 });
 
-
 document.body.appendChild(input);
 document.addEventListener("DOMContentLoaded", () => {
   input.focus();
