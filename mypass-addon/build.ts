@@ -4,8 +4,8 @@ rmSync("./dist", { force: true, recursive: true });
 
 await Bun.build({
   entrypoints: [
-    "./src/background.js",
-    "./src/content.js",
+    "./src/background.ts",
+    "./src/content.ts",
   ],
   outdir: "./dist",
   format: "cjs",
