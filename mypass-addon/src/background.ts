@@ -3,8 +3,8 @@ import wasm from "mypass-wasm/mypass_wasm_bg.wasm";
 
 const getMasterpass = async () => {
   const { masterpass } = await browser.storage.local.get(["masterpass"]);
-  if (masterpass instanceof ArrayBuffer) {
-    return new Uint8Array(masterpass);
+  if (masterpass instanceof Uint8Array) {
+    return masterpass;
   } else {
     throw new Error("masterpass is not registered");
   }
