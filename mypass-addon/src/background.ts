@@ -12,6 +12,7 @@ init(wasm).then(() => {
     if (info.menuItemId !== "req-mypass") return;
     browser.action.openPopup();
   });
+
   browser.runtime.onMessage.addListener(async (msg) => {
     if (msg.type !== "password") return;
     const password: string = msg.password;
