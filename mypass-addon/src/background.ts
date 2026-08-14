@@ -14,11 +14,7 @@ interface ConfigFile {
 
 const getConfig = async () => {
   const { config } = await browser.storage.local.get(["config"]);
-  if (config != null) {
-    return config as ConfigFile;
-  } else {
-    throw new Error("masterpass is not registered");
-  }
+  return (config ?? {}) as ConfigFile;
 };
 
 const getMasterpass = async () => {
