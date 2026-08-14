@@ -8,7 +8,7 @@ input.addEventListener("change", async () => {
   if (input.files!.length == 0) return;
   const file = input.files![0]!;
   const masterpass = await file.bytes();
-  browser.storage.local.set({ masterpass });
+  browser.storage.session.set({ masterpass });
 });
 
 const label = document.createElement("label");

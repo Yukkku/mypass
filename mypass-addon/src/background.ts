@@ -22,7 +22,7 @@ const getConfig = async () => {
 };
 
 const getMasterpass = async () => {
-  const { masterpass } = await browser.storage.local.get(["masterpass"]);
+  const { masterpass } = await browser.storage.session.get(["masterpass"]);
   if (masterpass instanceof Uint8Array) {
     return masterpass;
   } else {
