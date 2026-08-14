@@ -40,7 +40,6 @@
               rustfmt
 
               wasm-pack
-              wasm-bindgen-cli
               llvmPackages.bintools
 
               bun
