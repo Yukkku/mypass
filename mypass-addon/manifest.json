@@ -16,8 +16,7 @@
     "default_popup": "popup.html"
   },
   "options_ui": {
-    "page": "option.html",
-    "open_in_tab": true
+    "page": "option.html"
   },
 
   "permissions": [
