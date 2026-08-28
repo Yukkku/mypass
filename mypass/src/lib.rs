@@ -5,11 +5,11 @@ mod ascii;
 use ascii::AsciiPrintable;
 pub use ascii::CharGroup;
 
-struct PassSource(sha3::Shake256Reader);
+struct PassSource(shake::Shake256Reader);
 impl PassSource {
     #[must_use]
     fn new(service: &str, phrase: &str, masterpass: &[u8], info: &str) -> Self {
-        use sha3::{
+        use shake::{
             Shake256,
             digest::{ExtendableOutput, Update},
         };
@@ -25,7 +25,7 @@ impl PassSource {
     }
 
     fn next(&mut self) -> u16 {
-        use sha3::digest::XofReader;
+        use shake::digest::XofReader;
         let mut bytes = [0; 2];
         self.0.read(&mut bytes);
         u16::from_be_bytes(bytes)

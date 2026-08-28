@@ -6,4 +6,4 @@ edition = "2024"
 
 [dependencies]
 serde = { version = "^1.0.229", features = [ "derive" ] }
-sha3 = "^0.12.0"
+shake = "^0.1.0"
