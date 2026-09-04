@@ -42,10 +42,6 @@
               wasm-pack
               llvmPackages.bintools
 
-              bun
-              typescript-language-server
-              zip
-
               nixd
               nixfmt
             ];
