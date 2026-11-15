@@ -37,7 +37,7 @@ init(wasm).then(() => {
   browser.contextMenus.onClicked.addListener((info, tab) => {
     if (info.menuItemId !== "req-mypass") return;
     lastTab = tab;
-    browser.action.openPopup();
+    browser.browserAction.openPopup();
   });
 
   browser.runtime.onMessage.addListener(async (msg) => {

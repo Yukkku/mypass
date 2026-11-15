@@ -1,5 +1,5 @@
 {
-  "manifest_version": 3,
+  "manifest_version": 2,
   "name": "mypass",
   "version": "3.0",
   "author": "Yukkku",
@@ -12,7 +12,7 @@
     "js": ["content.js"],
     "run_at": "document_start"
   }],
-  "action": {
+  "browser_action": {
     "default_popup": "popup.html"
   },
   "options_ui": {
@@ -23,9 +23,7 @@
     "contextMenus",
     "storage"
   ],
-  "content_security_policy": {
-    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';"
-  },
+  "content_security_policy": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self';",
 
   "browser_specific_settings": {
     "gecko": {
