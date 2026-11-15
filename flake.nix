@@ -22,6 +22,7 @@
         {
           mypass-cli = pkgs.callPackage ./mypass-cli { };
           mypass-wasm = pkgs.callPackage ./mypass-wasm { };
+          mypass-addon = pkgs.callPackage ./mypass-addon { };
         }
       );
       devShells = eachSystem (
@@ -37,6 +38,14 @@
               rustc
               rust-analyzer
               rustfmt
+
+              wasm-pack
+              llvmPackages.bintools
+
+              bun
+              zip
+              typescript-language-server
+              vscode-langservers-extracted
 
               nixd
               nixfmt

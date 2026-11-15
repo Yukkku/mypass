@@ -1,0 +1,18 @@
+{
+  "name": "mypass-addon",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/firefox-webext-browser": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "mypass-wasm": "file:../mypass-wasm/pkg"
+  },
+  "scripts": {
+    "build": "bun run build.ts && zip mypass.xpi -j -r dist/*"
+  }
+}
